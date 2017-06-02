@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Site desenvolvido para DIW">
+    <meta name="author" content="Pedro Henrique Marques Almeida, Ananda Moreira, João Americo">
+    <title>Getsai</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">	
+	
+	<script>
+	function executaConsulta() {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/search',
+                data: {
+                    type: 'track',
+                    q: $('#music').val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    var strSaida = '';
+
+                    for (i = 0; i < data.tracks.items.length; i++) {
+                        strSaida += 'Musica: <a href="#" onclick="javascript:play(\'' + 
+                        data.tracks.items[i].preview_url+ '\')">' + 
+                        data.tracks.items[i].album.name +
+                            '- ' + data.tracks.items[i].name + '</a><br>';
+                    }
+
+                    $('#conteudo').html('<p>Total de Musicas: ' + data.tracks.items.length + '</p>' +
+                        strSaida);
+                }
+            });
+        }
+
+        function play (url){
+            var audio = new Audio(url);
+            audio.play();
+        }
+	</script>
+
+</head>
+
+<body>
+    
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>Bem Vindo!</h1>
+			<h3>Getsai o melhor site de musica</h3>
+            <br>
+            <a href="#services" class="btn btn-dark btn-lg">Procurar Musica</a>
+        </div>
+    </header>
+
+    <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Musica</h2>
+                    <hr class="small">
+                    <div class="row">
+					
+					<div id="conteudo"></div>
+					
+                        <form class="form-inline">
+							<div class="form-group">
+								<input type="text" class="form-control" id="music" placeholder="Ex: System of a Down">
+								<button onclick="executaConsulta() " class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+							</div>
+						</form>
+					</div>
+				</div>
+            </div>
+        </div>
+    </section>
+	
+    <aside class="callout">
+        <div class="text-vertical-center">
+            <h1>Favoritos</h1>
+        </div>
+    </aside>
+
+ 
+    <script src="js/jquery.js"></script>
+
+    
+    <script src="js/bootstrap.min.js"></script>
+
+   
+    <script>
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+  
+    
+    
+    </script>
+
+</body>
+
+</html>
