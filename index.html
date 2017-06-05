@@ -171,6 +171,10 @@
         
         $('#search-form').submit();
       });
+	  
+	function addLista(){
+		$('#conteudo').append('isso ai deu bom');
+	}
     </script>
 
     <style>
@@ -199,8 +203,8 @@
 
   <body>
     <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="well col-xs-12 col-sm-4 col-md-4 col-lg-3">
-        <form id="search-form">
+	<div class="well col-xs-12 col-sm-4 col-md-4 col-lg-3">
+	  <form id="search-form">
           <fieldset>
             <div class="form-group form-group-sm row">
               <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label" for="query">Pesquisar:</label>
@@ -223,18 +227,33 @@
                     </div>
                   </div>
                 </div>
-              </div>
+             </div>
             <button id="submit" name="submit" type="submit" class="btn btn-primary pull-right">
               Pesquisar <i class="fa fa-search"></i>
-            </button>
+			 </button>
+			 
+			 <button id="btnlista" name="btnlista" onclick="addLista()" type="submit" class="btn btn-primary pull-right">
+			Add Lista <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+			</button>
+			
           </fieldset>
+		  <br />
+		  Minha Lista: 
+		  <div id="conteudo">
+			
+			
+			</div>
         </form>
+		
       </div>
+	  
       <div class="col-xs-12 col-md-8 col-md-8 col-lg-9">
         <p class="lead">Imagens</p>
           <hr />
           <div id="image-search-results"></div>
         </div>
+		
       </div>
+	  
   </body>
 </html>
