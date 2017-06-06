@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        
+      <script type="text/javascript"></script>
+    <script>  
         
       /* API */
       var API_URL = 'https://api.shutterstock.com/v2';
@@ -109,8 +109,16 @@
         $(wrapper)
           .addClass('image-float-wrapper image ' + minHeightCSS)
           .append(thumbWrapper);
+          
+        $(wrapper).click(function(){
+            $('#conteudo')
+            .html('<img>')
+            .append(thumbnail);
+        });
+          
         return wrapper;
       }
+        
       
   
       function renderCategories() {
@@ -146,7 +154,7 @@
         setDefaultPerPage();
         $('#search-form').submit(function(e) {
           e.preventDefault();
-          $('#image-search-results, #video-search-results').empty();
+          $('#image-search-results').empty();
           var opts = $('input').filter(function() {
             if (this.value === '#999999') return;
             if (this.name === 'client_id') return;
@@ -170,11 +178,18 @@
         });
         
         $('#search-form').submit();
+          
       });
-	  
-	function addLista(){
-		$('#conteudo').append('isso ai deu bom');
-	}
+        
+        $('button.thumbnail-crop').click(function(){
+            
+            /*ar.push($(this).attr('id'));
+            $('#'+$(this).attr('id')).css("border","2px solid #f00");*/
+        });
+        
+        function teste(){
+            
+        }
     </script>
 
     <style>
@@ -197,14 +212,13 @@
         margin: 0 auto;
       }
         
-        
     </style>
   </head>
 
   <body>
     <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<div class="well col-xs-12 col-sm-4 col-md-4 col-lg-3">
-	  <form id="search-form">
+      <div class="well col-xs-12 col-sm-4 col-md-4 col-lg-3">
+        <form id="search-form">
           <fieldset>
             <div class="form-group form-group-sm row">
               <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label" for="query">Pesquisar:</label>
@@ -227,33 +241,21 @@
                     </div>
                   </div>
                 </div>
-             </div>
+              </div>
             <button id="submit" name="submit" type="submit" class="btn btn-primary pull-right">
               Pesquisar <i class="fa fa-search"></i>
-			 </button>
-			 
-			 <button id="btnlista" name="btnlista" onclick="addLista()" type="submit" class="btn btn-primary pull-right">
-			Add Lista <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-			</button>
-			
+            </button>
           </fieldset>
-		  <br />
-		  Minha Lista: 
-		  <div id="conteudo">
-			
-			
-			</div>
+            Minha lista: 
+            <div id="conteudo">
+            </div>
         </form>
-		
       </div>
-	  
       <div class="col-xs-12 col-md-8 col-md-8 col-lg-9">
         <p class="lead">Imagens</p>
           <hr />
           <div id="image-search-results"></div>
         </div>
-		
       </div>
-	  
   </body>
 </html>
