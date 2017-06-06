@@ -223,14 +223,15 @@
         <header id="titulo">
         <h1>GETSAI</h1>
         <h2>Monte sua lista com fotos incriveis</h2>
+        <h3><img src"img/quadro.png"/><h3/>
         </header>
    <div class="conteudo">
        <div class="pesquisa">
         <form id="search-form">
           <fieldset>
             <div class="form-group form-group-sm row">
-              <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label" for="query">Pesquisar:</label>
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+              <label class="titulo-pesquisa" for="query">Pesquisar:</label>
+              <div class="barra">
                 <input id="query" name="query" value="" placeholder="macaco" class="form-control"/>
               </div>
             </div>
@@ -250,7 +251,7 @@
                   </div>
                 </div>
               </div>
-            <button id="submit" name="submit" type="submit" class="btn btn-primary pull-right">
+            <button id="button" name="submit" type="submit" class="btn btn-primary pull-right">
               Pesquisar <i class="fa fa-search"></i>
             </button>
           </fieldset>
@@ -260,12 +261,13 @@
 			<div id="detalhe">
             </div>
         </form>
-      </div>
+      </div>  
+       <div class="divisor"></div>
       <div class="imagens">
-        <p class="lead">Imagens</p>
+        <p class="titulo-imagens">Imagens</p>
           <hr />
           <div id="image-search-results"></div>
-        </div>
+        </div>   
       </div>
   </body>
 </html>
