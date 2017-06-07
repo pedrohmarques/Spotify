@@ -97,7 +97,8 @@
         var wrapper = $('<div>');
         var thumbWrapper = $('<div>');
         var thumbnail = $('<img>');
-        var description = $('<p>');
+        var description = $('<b>');
+          //Criação das Imagens
         $(thumbnail)
           .click(fetchDetails)
           .attr('id', image.id)
@@ -111,20 +112,41 @@
         $(wrapper)
           .addClass('image-float-wrapper image ' + minHeightCSS)
           .append(thumbWrapper);
+          
 		  
 		  //Criar a lista
           var images = $('<img>');
-		  
+          var detalheIMG = $('<img>');
+          var listIMG = $('<div>');
+          
 		  $(images)
 			.click(fetchDetails)
 			.attr('id', image.id)
 			.attr('src', image.assets.large_thumb.url)
 			.attr('title', image.description);
-		 
+          
+          $(detalheIMG)
+			.click(fetchDetails)
+			.attr('id', image.id)
+			.attr('src', image.assets.large_thumb.url)
+			.attr('title', image.description);
+          
+          //Ao clicar na IMG mostra detalhe delas
+          $(listIMG)
+          .append(images)
+          .click(function(){
+               $('#detalhe').empty();
+                $('#det').show();
+                $('#detalhe')
+               .append(detalheIMG)
+               .append('Tamanho: '+image.assets.large_thumb.height+ ' x '+image.assets.large_thumb.width+' ')
+               .append('<a href="https://www.shutterstock.com/pt/image-vector/'+image.id+'" target="_blank">Mais Informação</a><br />')
+            });
+          
+          //Lista de Favoritos
         $(wrapper).click(function(){
 			$('#conteudo')
-			.append(images);
-			
+			.append(listIMG)
 		});
 		
 		  
@@ -192,7 +214,9 @@
         $('#search-form').submit();
           
       });
-        
+        function detalhes(){
+           $('#det').hide(); 
+        }
     </script>
 
     <style>
@@ -219,11 +243,10 @@
     </style>
   </head>
 
-  <body>
+  <body onload="detalhes()">
         <header id="titulo">
         <h1>GETSAI</h1>
         <h2>Monte sua lista com fotos incriveis</h2>
-        <h3><img src"img/quadro.png"/><h3/>
         </header>
    <div class="conteudo">
        <div class="pesquisa">
@@ -255,16 +278,17 @@
               Pesquisar <i class="fa fa-search"></i>
             </button>
           </fieldset>
-            Minha lista: 
+            <h4>Minha lista:</h3> 
             <div id="conteudo">
             </div>
+            <h4 id="det">Detalhes:</h3> 
 			<div id="detalhe">
             </div>
         </form>
       </div>  
        <div class="divisor"></div>
       <div class="imagens">
-        <p class="titulo-imagens">Imagens</p>
+        <p class="titulo-imagens"><h3>Imagens</h3></p>
           <hr />
           <div id="image-search-results"></div>
         </div>   
